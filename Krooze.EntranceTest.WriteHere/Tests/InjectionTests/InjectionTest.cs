@@ -17,6 +17,7 @@ namespace Krooze.EntranceTest.WriteHere.Tests.InjectionTests
 
             Type t = null;
 
+
             if (request.CruiseCompanyCode == 1)
             {
                 t = Type.GetType("Krooze.EntranceTest.WriteHere.Structure.Implementations.Company1");
@@ -44,8 +45,12 @@ namespace Krooze.EntranceTest.WriteHere.Tests.InjectionTests
                 var list = mi.Invoke(obj, new Object[] { request });
                 return (List<CruiseDTO>)list;
             }
+            else
+            {
+                throw new Exception();
+            }
 
-            return null;
+            //return null;
         }
     }
 }
