@@ -1,4 +1,5 @@
 ﻿using Krooze.EntranceTest.WriteHere.Structure.Model;
+using System.Linq;
 
 namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
 {
@@ -14,7 +15,10 @@ namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
         {
             //TODO: Based on the CruisesDTO object, check if the second passenger has some kind of discount, based on the first passenger price
             //Assume there are always 2 passengers on the list
-            return null;
+            if (cruise.PassengerCruise[1].Cruise.CabinValue < cruise.PassengerCruise[0].Cruise.CabinValue)
+                return true;
+
+            return false;
         }
 
         public int? GetInstallments(decimal fullPrice)
