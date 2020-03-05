@@ -1,4 +1,5 @@
 ﻿using Krooze.EntranceTest.WriteHere.Structure.Model;
+using System;
 using System.Linq;
 
 namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
@@ -8,7 +9,13 @@ namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
         public decimal? GetOtherTaxes(CruiseDTO cruise)
         {
             //TODO: Based on the CruisesDTO object, gets if there is some other tax that not the port charge
-            return null;
+
+            var tax = cruise.CabinValue + cruise.PortCharge;
+
+            if (cruise.TotalValue != tax)
+                return cruise.TotalValue - tax;
+            else
+                return 0;
         }
 
         public bool? IsThereDiscount(CruiseDTO cruise)
@@ -26,8 +33,20 @@ namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
             //TODO: Based on the full price, find the max number of installments
             // -The absolute max number is 12
             // -The minimum value of the installment is 200
+            int? parc = 0;
 
-            return null;
+            if (fullPrice >= 200)
+            {
+                parc = (int?)(fullPrice / 200);
+                if (parc > 12)
+                    parc = 12;
+            }
+            else
+            {
+                parc = 1;
+            }
+
+            return parc;
         }
     }
 }
