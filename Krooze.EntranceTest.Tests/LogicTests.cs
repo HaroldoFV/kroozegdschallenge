@@ -30,8 +30,8 @@ namespace Krooze.EntranceTest.Tests
             Assert.AreEqual(10638m, result.PassengerCruise.Sum(x => x.Cruise.CabinValue));
             Assert.AreEqual(1400m, result.PassengerCruise.Sum(x => x.Cruise.PortCharge));
             Assert.AreEqual(12038m, result.PassengerCruise.Sum(x => x.Cruise.TotalValue));
-            Assert.IsTrue(result.PassengerCruise.Any(x => x.PassengerCode == "-9999"),"No passenger -9999");
-            Assert.IsTrue(result.PassengerCruise.Any(x => x.PassengerCode == "-9998"),"No passenger -9998");
+            Assert.IsTrue(result.PassengerCruise.Any(x => x.PassengerCode == "-9999"), "No passenger -9999");
+            Assert.IsTrue(result.PassengerCruise.Any(x => x.PassengerCode == "-9998"), "No passenger -9998");
             Assert.Pass();
         }
 
@@ -66,7 +66,7 @@ namespace Krooze.EntranceTest.Tests
                 CabinValue = firstPassenger + secondPassenger
             });
         }
-        
+
         [TestCase(400, ExpectedResult = 2)]
         [TestCase(40000, ExpectedResult = 12)]
         [TestCase(100, ExpectedResult = 1)]
