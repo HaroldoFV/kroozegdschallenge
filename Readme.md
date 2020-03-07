@@ -1,7 +1,7 @@
  
 ## Endpoints 
 
-endpoint : api/cruises/companies/1
+## endpoint : api/cruises/companies/1
 metodo: GET
 Descrição : retorna as informações de uma compania
 
