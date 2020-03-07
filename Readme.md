@@ -1,18 +1,17 @@
  
 ## Endpoints 
 
-1.
 endpoint : api/cruises/companies/1
 metodo: GET
 Descrição : retorna as informações de uma compania
 
-2.
+ 
 endpoint : api/cruises/cabinValue/10000/portCharge/1000/totalValue/12000/rate
 metodo: GET
 Descrição : obter algum outro imposto que não seja a taxa portuaria
 
+ 
 
-3.
 endpoint : api/cruises/discount
 metodo: POST
 Descrição : verificar se o segundo passageiro possui algum desconto com base no preço do primeiro passageiro
@@ -40,22 +39,26 @@ body:
 		
 	}
 
-4.
+
+
 endpoint : api/cruises/GetInstallments/fullPrice/400
 metodo: GET
 Descrição : retorna o número máximo de parcelas com base no preço total
 
-5.
+
+
 endpoint : api/cruises/translateXML
 metodo: GET
 Descrição : retorna os dados do arquivo Cruises.xml
 
-6.
+
+
 endpoint : api/movies
 metodo: GET
 Descrição : retorna uma lista de filmes
 
-7.
+
+
 endpoint : api/director
 metodo: GET
 Descrição : retorna o nome do diretor dos filmes de star wars
