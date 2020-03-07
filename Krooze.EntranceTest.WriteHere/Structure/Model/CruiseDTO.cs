@@ -25,13 +25,13 @@ namespace Krooze.EntranceTest.WriteHere.Structure.Model
         /// </summary>
         public string ShipName { get; set; }
 
-        public List<PassengerCruiseDTO> PassengerCruise { get; set; }
+        public List<PassengerCruiseDTO> PassengerCruise { get; set; } = new List<PassengerCruiseDTO>();
 
     }
 
     public class PassengerCruiseDTO
     {
-        public CruiseDTO Cruise { get; set; }
+        public CruiseDTO Cruise { get; set; } = new CruiseDTO();
         public string PassengerCode { get; set; }
     }
 }

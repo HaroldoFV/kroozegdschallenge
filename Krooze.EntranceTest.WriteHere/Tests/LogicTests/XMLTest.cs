@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
 {
@@ -26,36 +27,18 @@ namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
             int count = 0;
             foreach (var item in cruises.CategoryPriceDetails.Pax)
             {
-                if (count == 0)
+                passengerCruise.Add(new PassengerCruiseDTO
                 {
-                    passengerCruise.Add(new PassengerCruiseDTO
+                    PassengerCode = item.PaxID,
+                    Cruise = new CruiseDTO
                     {
-                        PassengerCode = item.PaxID,
-                        Cruise = new CruiseDTO
-                        {
-                            CruiseCode = cruises.CruiseId,
-                            ShipName = cruises.ShipName,
-                            TotalValue = 0,
-                            CabinValue = 0,
-                            PortCharge = 0
-                        }
-                    });
-                }
-                else
-                {
-                    passengerCruise.Add(new PassengerCruiseDTO
-                    {
-                        PassengerCode = item.PaxID,
-                        Cruise = new CruiseDTO
-                        {
-                            CruiseCode = cruises.CruiseId,
-                            ShipName = cruises.ShipName,
-                            TotalValue = Math.Round(Convert.ToDecimal(cruises.TotalCabinPrice.Replace(".", ","))),
-                            CabinValue = Math.Round(Convert.ToDecimal(cruises.CabinPrice.Replace(".", ","))),
-                            PortCharge = Math.Round(Convert.ToDecimal(cruises.PortChargesAmt.Replace(".", ",")))
-                        }
-                    });
-                }
+                        CruiseCode = cruises.CruiseId,
+                        ShipName = cruises.ShipName,
+                        TotalValue = passengerCruise.Count() == 0 ? Math.Round(Convert.ToDecimal(cruises.TotalCabinPrice.Replace(".", ","))) : 0,
+                        CabinValue = passengerCruise.Count() == 0 ? Math.Round(Convert.ToDecimal(cruises.CabinPrice.Replace(".", ","))) : 0,
+                        PortCharge = passengerCruise.Count() == 0 ? Math.Round(Convert.ToDecimal(cruises.PortChargesAmt.Replace(".", ","))) : 0
+                    }
+                });
                 count++;
             }
 
@@ -68,6 +51,7 @@ namespace Krooze.EntranceTest.WriteHere.Tests.LogicTests
                 PortCharge = Math.Round(Convert.ToDecimal(cruises.PortChargesAmt.Replace(".", ","))),
                 PassengerCruise = passengerCruise
             };
+
             return cliente;
         }
     }
