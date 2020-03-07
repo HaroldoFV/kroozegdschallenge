@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Krooze.EntranceTest.Application\Krooze.EntranceTest.Application.csproj" />
     <ProjectReference Include="..\Krooze.EntranceTest.WriteHere\Krooze.EntranceTest.WriteHere.csproj" />
   </ItemGroup>
 

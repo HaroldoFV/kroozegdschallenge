@@ -14,9 +14,8 @@ namespace Krooze.EntranceTest.WriteHere.Tests.WebTests
             _httpClient = httpClient;
         }
         public WebTest()
-        {
+        { }
 
-        }
         private JObject movies = null;
 
         public JObject GetAllMovies()
@@ -24,16 +23,9 @@ namespace Krooze.EntranceTest.WriteHere.Tests.WebTests
             //TODO: Consume the following API: https://swapi.co/documentation using only .NET standard libraries (do not import the helpers on this page)
             // -Return the films object
 
-            movies = Get();
-            return movies;
-        }
-
-
-        public JObject Get()
-        {
             using (var client = new HttpClient())
             {
-           
+
                 using (var response = client.GetAsync("https://swapi.co/api/films/").Result) //"https://swapi.co/api/films/"
                 {
                     if (response.IsSuccessStatusCode)
@@ -49,6 +41,7 @@ namespace Krooze.EntranceTest.WriteHere.Tests.WebTests
                 }
             }
         }
+
 
         public string GetDirector()
         {

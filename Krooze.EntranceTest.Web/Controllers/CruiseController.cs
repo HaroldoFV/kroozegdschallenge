@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Krooze.EntranceTest.WriteHere.Structure.Model;
-using Krooze.EntranceTest.WriteHere.Tests.InjectionTests;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Krooze.EntranceTest.Application.Models;
+using Krooze.EntranceTest.Application.Services;
+using Newtonsoft.Json.Linq;
 
 namespace Krooze.EntranceTest.Web.Controllers
 {
@@ -13,37 +11,63 @@ namespace Krooze.EntranceTest.Web.Controllers
     [ApiController]
     public class CruiseController : ControllerBase
     {
+        private readonly CruiseService _cruiseService;
+
+        public CruiseController(CruiseService cruiseService)
+        {
+            _cruiseService = cruiseService;
+        }
+
         [HttpGet]
-        [Route("cruise/company/{cruiseCompanyCode}")]
+        [Route("cruises/companies/{cruiseCompanyCode}")]
         public List<CruiseDTO> GetCruises(int cruiseCompanyCode)
         {
-            InjectionTest injectionTest = new InjectionTest();
-            return injectionTest.GetCruises(new CruiseRequestDTO() { CruiseCompanyCode = cruiseCompanyCode });
+            return _cruiseService.GetCruises(cruiseCompanyCode);
         }
 
-        // GET: api/Cruise/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("cruises/cabinValue/{cabinValue}/portCharge/{portCharge}/totalValue/{totalValue}/rate")]
+        public decimal? GetOtherTaxes(decimal cabinValue, decimal portCharge, decimal totalValue)
         {
-            return "value";
+            return _cruiseService.GetOtherTaxes(cabinValue, portCharge, totalValue);
         }
 
-        // POST: api/Cruise
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("cruises/discount")]
+        public bool? IsThereDiscount([FromBody] PassengerCruiseModel request)
         {
+            return _cruiseService.IsThereDiscount(request);
         }
 
-        // PUT: api/Cruise/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet]
+        [Route("cruises/GetInstallments/fullPrice/{fullPrice}")]
+        public int? GetInstallments(decimal fullPrice)
         {
+            return _cruiseService.GetInstallments(fullPrice);
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet]
+        [Route("cruises/translateXML")]
+        public CruiseDTO TranslateXML()
         {
+            return _cruiseService.TranslateXML();
         }
+
+        [HttpGet]
+        [Route("movies")]
+        public JObject GetAllMovies()
+        {
+            return _cruiseService.GetAllMovies();
+        }
+
+        [HttpGet]
+        [Route("director")]
+        public string GetDirector()
+        {
+            return _cruiseService.GetDirector();
+        }
+
+
+
     }
 }
