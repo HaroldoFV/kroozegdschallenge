@@ -1,12 +1,10 @@
-﻿using Krooze.EntranceTest.Application.Services;
-using Krooze.EntranceTest.WriteHere.Tests.InjectionTests;
-using Krooze.EntranceTest.WriteHere.Tests.LogicTests;
-using Krooze.EntranceTest.WriteHere.Tests.WebTests;
+﻿using Krooze.EntranceTest.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Krooze.EntranceTest.Web
 {
@@ -22,11 +20,9 @@ namespace Krooze.EntranceTest.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<InjectionTest, InjectionTest>();
-            services.AddScoped<SimpleLogicTest, SimpleLogicTest>();
-            services.AddScoped<CruiseService, CruiseService>();
-            services.AddScoped<XMLTest, XMLTest>();
-            services.AddScoped<WebTest, WebTest>();
+            // Adicionando injeções de dependência da camada CrossCutting.IoC
+            Bootstrapper.RegisterServices(services);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

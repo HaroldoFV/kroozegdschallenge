@@ -1,44 +1,62 @@
-# Desafio para candidatos à vaga de desenvolvedor Krooze (Equipe GDS)
-A ideia deste desafio é nos permitir avaliar melhor as habilidades de candidatos à vagas de programador, de vários níveis.
-Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, porém normalmente você não deve precisar de mais do que algumas horas.
+ 
+## Endpoints 
 
-## Instruções de entrega do desafio
-1. Primeiro, faça um fork deste projeto para sua conta no GitHub (crie uma se você não possuir).
-2. Em seguida, implemente o projeto tal qual descrito abaixo, em seu próprio fork.
-3. Crie as instruções de instalação e execução do aplicativo em seu `readme.md`.
-4. Por fim, envie o link do seu repositório para avaliarmos seu código.
+1.
+endpoint : api/cruises/companies/1
+metodo: GET
+Descrição : retorna as informações de uma compania
 
-## Descrição do projeto prático.
-- Primeira Etapa:
-  - Faça todos os testes passarem (Projeto Krooze.EntranceTest.Tests), ou a maioria deles, caso seu nível seja Júnior
-  - Seu código deve ser escrito no projeto Krooze.EntranceTest.WriteHere, ou referenciado a partir dele
-  - O projeto Krooze.EntranceTest.WriteHere pode ser alterado à vontade
-  - A descrição do que fazer está no "TODO" de cada método
-  - Podem-se criar novos projetos na Solution, caso o dev ache necessário
-- Segunda Etapa:
-  - Crie um endpoint pra cada método feito nos testes da primeira etapa, no projeto Krooze.EntranceTest.Web, no total 7 endpoints
-  - Organize os Endpoints como achar melhor
-  - Deixe todos os endpoints disponíveis documentados em seu readme.md
-  - O projeto Krooze.EntranceTest.Web pode ser completamente alterado, da maneira que o dev achar melhor
-  - Podem-se criar novos projetos na Solution, caso o dev ache necessário
+2.
+endpoint : api/cruises/cabinValue/10000/portCharge/1000/totalValue/12000/rate
+metodo: GET
+Descrição : obter algum outro imposto que não seja a taxa portuaria
 
-## Sua aplicação DEVE:
-* Utilizar o máximo possível das bibliotecas padrão
-* Utilizar pacotes do nuget, caso o item anterior não seja possível
 
-## Sua aplicação NÃO DEVE:
-* Não deve importar pacotes de auxílio do swapi.co.
-* O projeto Projeto Krooze.EntranceTest.Tests não deve ser alterado, caso tenha alguma dúvida, ou ache que algum teste está falhando injustamente, abra uma issue após apresentar suas soluções
+3.
+endpoint : api/cruises/discount
+metodo: POST
+Descrição : verificar se o segundo passageiro possui algum desconto com base no preço do primeiro passageiro
+body: 
+	{
+	 "PassengerCruise":
+		[
+			{
+			"CruiseCode":"1",
+			"TotalValue":1000,
+			"CabinValue": 1000,
+			"PortCharge": 222,
+			"ShipName": "",
+			"PassengerCode":""
+			},
+			{
+			"CruiseCode":"1",
+			"TotalValue":1000,
+			"CabinValue": 700,
+			"PortCharge": 222,
+			"ShipName": "",
+			"PassengerCode":""
+			}
+	 	]
+		
+	}
 
-## Avaliação
-Seu projeto será avaliado de acordo com os seguintes critérios:
+4.
+endpoint : api/cruises/GetInstallments/fullPrice/400
+metodo: GET
+Descrição : retorna o número máximo de parcelas com base no preço total
 
-1. Sua aplicação atende funcionalmente o que foi pedido;
-2. Você seguiu as instruções enviadas;
-3. Você segue as boas práticas de programação;
-4. O código escrito é fácil de entender e manter;
+5.
+endpoint : api/cruises/translateXML
+metodo: GET
+Descrição : retorna os dados do arquivo Cruises.xml
 
-## Requerimentos Técnicos
- - [.NET Core 2.2](https://dotnet.microsoft.com/download/visual-studio-sdks?utm_source=getdotnetsdk&utm_medium=referral)
- - [.NET Core 2.0](https://dotnet.microsoft.com/download/visual-studio-sdks?utm_source=getdotnetsdk&utm_medium=referral)
- - [Visual Studio 2017 ou 2019](https://visualstudio.microsoft.com/pt-br/downloads/)
+6.
+endpoint : api/movies
+metodo: GET
+Descrição : retorna uma lista de filmes
+
+7.
+endpoint : api/director
+metodo: GET
+Descrição : retorna o nome do diretor dos filmes de star wars
+
