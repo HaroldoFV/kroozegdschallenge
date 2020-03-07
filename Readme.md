@@ -1,9 +1,9 @@
  
 ## Endpoints 
 
-endpoint : api/cruises/companies/1
-metodo: GET
-Descrição : retorna as informações de uma compania
+endpoint : api/cruises/companies/1 <br/>
+metodo: GET <br/>
+Descrição : retorna as informações de uma compania <br/><br/><br/>
 
  
 endpoint : api/cruises/cabinValue/10000/portCharge/1000/totalValue/12000/rate
